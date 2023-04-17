@@ -16,8 +16,8 @@
 class Solution {
     public int count=0;
     public int sumOfLeftLeaves(TreeNode root) {
-        if(root==null) return count;
-        if(root.left==null && root.right==null) return count;
+        
+        if(root==null || root.left==null && root.right==null) return count;
         if(root.left!=null && root.left.left==null && root.left.right==null) count+=root.left.val;
         sumOfLeftLeaves(root.left);
         sumOfLeftLeaves(root.right);
