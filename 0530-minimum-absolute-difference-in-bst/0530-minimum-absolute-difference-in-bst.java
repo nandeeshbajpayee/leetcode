@@ -13,22 +13,21 @@
  *     }
  * }
  */
-class Solution {
-    List<Integer> list=new ArrayList<>();
+public class Solution {
+    
+    int minvalue = Integer.MAX_VALUE;
+    int prev= Integer.MAX_VALUE/2;
     public int getMinimumDifference(TreeNode root) {
-        nodes(root);
-        int minvalue=Integer.MAX_VALUE;
-        Collections.sort(list);  
-        for(int i=0;i<list.size()-1;i++){
-            int absmin=Math.abs(list.get(i)-list.get(i+1));
-            if(absmin<minvalue) minvalue=absmin;
-        }
+        minimum(root);
         return minvalue;
     }
-    public void nodes(TreeNode root) {
-        if(root==null) return;
-        list.add(root.val);
-        getMinimumDifference(root.left);
-        getMinimumDifference(root.right);
+    
+    public void minimum(TreeNode root) {
+        if (root == null) return;
+        minimum(root.left);
+        minvalue= Math.min(minvalue, Math.abs(root.val - prev));
+        prev = root.val;
+        minimum(root.right);
     }
+
 }
