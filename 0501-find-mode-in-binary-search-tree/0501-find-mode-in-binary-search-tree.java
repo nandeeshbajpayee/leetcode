@@ -16,7 +16,7 @@
 class Solution {
     int max=0;
     int count=1;
-    Integer prev=null;
+    Integer prev=-1;
     List<Integer> list = new ArrayList<>();
     public int[] findMode(TreeNode root) {
         if(root==null) return new int[0];
@@ -30,12 +30,10 @@ class Solution {
     public void mode(TreeNode root){
         if(root==null) return ;
         mode(root.left);
-        if(prev!=null){
-            if(prev==root.val){
+        if(prev==root.val){
                 count++;
             }
-            else count=1;
-        }
+        else count=1;
         if(count>max){
             max=count;
             list.clear();
