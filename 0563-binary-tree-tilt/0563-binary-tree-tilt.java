@@ -14,15 +14,17 @@
  * }
  */
 class Solution {
+    int result=0;
     public int findTilt(TreeNode root) {
-        if(root==null) return 0;
-        return  findTilt(root.left)+findTilt(root.right)+tilt(root);
+        if(root==null) return result;
+        helper(root);
+        return result;
     }
-    public int sum(TreeNode root){
+    public int helper(TreeNode root){
         if(root==null) return 0;
-        return sum(root.left)+sum(root.right)+root.val;
-    }
-    public int tilt(TreeNode root){
-        return Math.abs(sum(root.left)-sum(root.right));
+        int left=helper(root.left);
+        int right=helper(root.right);
+        result= result + Math.abs(left-right);
+        return left+right+root.val;
     }
 }
