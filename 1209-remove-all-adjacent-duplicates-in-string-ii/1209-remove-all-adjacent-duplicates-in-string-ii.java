@@ -20,19 +20,30 @@ class Solution {
                 }
             }
         }
-
-        StringBuilder sb = new StringBuilder();
-        while (!stack.isEmpty()) {
-            Pair<Character, Integer> pair = stack.pop();
-            char ch = pair.getFirst();
-            int count = pair.getSecond();
-            while (count > 0) {
-                sb.insert(0, ch);
+        String ans="";
+        char ch=' ';
+        while(!stack.isEmpty()){
+            int count=stack.peek().getSecond();
+            ch=stack.pop().getFirst();
+            while(count!=0){
+                ans=ch+ans;
                 count--;
             }
-        }
+        } 
+        return ans;
+        
+//         StringBuilder sb = new StringBuilder();
+//         while (!stack.isEmpty()) {
+//             Pair<Character, Integer> pair = stack.pop();
+//             char ch = pair.getFirst();
+//             int count = pair.getSecond();
+//             while (count > 0) {
+//                 sb.insert(0, ch);
+//                 count--;
+//             }
+//         }
 
-        return sb.toString();
+//         return sb.toString();
     }
 }
 
