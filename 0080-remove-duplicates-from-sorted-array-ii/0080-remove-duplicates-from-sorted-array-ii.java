@@ -1,20 +1,29 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int j=1;
+      Stack<Integer> stack =new Stack<>();
         int count=1;
-        if(nums.length<2) return nums.length;
-        for(int i=1;i<nums.length;i++){
-            if(nums[i-1]==nums[i]){
-                count++;
+        if(nums.length<=2) return nums.length;
+        for(int i=0;i<nums.length;i++){
+            if(stack.isEmpty()){
+                stack.push(nums[i]);
+                continue;
             }
-            else{
+            else if(stack.peek()!=nums[i]){
                 count=1;
             }
-            if(count<=2){
-                nums[j]=nums[i];
-                j++;
+            else {
+                count++;
+            }
+            if(count<=2) {
+                stack.push(nums[i]);
             }
         }
-        return j;
+        int len = stack.size();
+        int index = len - 1;
+        while (!stack.isEmpty()) {
+            nums[index] = stack.pop();
+            index--;
+        }
+        return len;
     }
 }
