@@ -4,44 +4,22 @@ import java.util.List;
 import java.util.Set;
 
 class Solution {
-    int i;
-    List<List<Integer>> arr=new ArrayList<>();
     public List<List<Integer>> threeSum(int[] nums) {
-        if(nums.length<3) return arr;
+        Set<List<Integer>> res= new HashSet<>();
         Arrays.sort(nums);
-        for(i=0;i<nums.length-2;i++){
-            if (i == 0 || nums[i] != nums[i - 1]) {
-                helper(i + 1, 0 - nums[i], nums.length - 1, nums);
+        for(int i=0;i<nums.length-2;i++){
+            int j=i+1;
+            int k=nums.length-1;
+            while(j<k){
+                int rem=nums[j]+nums[k];
+                if(rem==-nums[i]){
+                    res.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                    j++;k--;
+                }
+                else if(rem>-nums[i]) k--;
+                else j++;
             }
         }
-        return arr;
-    }
-    public void helper(int j,int rem,int k,int[] nums){
-        while(j<k){
-            if( j!=i+1 && nums[j]==nums[j-1]){
-                j++;
-                 continue;
-            }
-            if(k!=nums.length-1 && nums[k]==nums[k+1]) {
-                k--;
-                 continue;
-            }
-            int gora=nums[j]+nums[k];
-            if(gora==rem){
-                List<Integer> ele=new ArrayList<>();
-                ele.add(nums[i]);
-                ele.add(nums[j]);
-                ele.add(nums[k]);
-                arr.add(ele);
-                j++;
-                k--;
-            }
-            else if(gora>rem){
-                k--;
-            }
-            else{
-                j++;
-            }
-        }
+        return new ArrayList<>(res);
     }
 }
