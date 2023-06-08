@@ -1,19 +1,20 @@
+
 class Solution {
-    Set<List<Integer>> res= new HashSet<>();
-    
+    List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        res.add(new ArrayList<>());
-        if(nums.length==0) return new ArrayList<>(res);
         Arrays.sort(nums);
-        for(int i=0;i<nums.length;i++){
-             Set<List<Integer>> temp= new HashSet<>();
-            for(List<Integer> list : res ){
-                List<Integer> newlist = new ArrayList<>(list);
-                newlist.add(nums[i]);
-                temp.add(newlist);
-            }
-            res.addAll(temp);
+        subset(nums, 0, new ArrayList<>());
+        return res;
+    }
+
+    public void subset(int[] nums, int start, List<Integer> curr) {
+        res.add(new ArrayList<>(curr));
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i] == nums[i - 1])
+                continue;
+            curr.add(nums[i]);
+            subset(nums, i + 1, curr);
+            curr.remove(curr.size() - 1);
         }
-        return new ArrayList<>(res);
     }
 }
