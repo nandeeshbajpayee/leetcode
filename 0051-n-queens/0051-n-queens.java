@@ -25,7 +25,7 @@ class Solution {
         sb.append(j == i ? 'Q' : '.');
     }
     return sb.toString();
-}
+    }
     // public String maker(int i,int n){
     //     String str="";
     //     for(int j=0;j<n;j++){
