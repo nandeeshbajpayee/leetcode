@@ -1,43 +1,36 @@
 class Solution {
-    int ans=0;
+    int count = 0;
+
     public int totalNQueens(int n) {
-        helper(n);
-        return ans;
+        boolean[] columns = new boolean[n];
+        boolean[] diagonal1 = new boolean[2 * n - 1];
+        boolean[] diagonal2 = new boolean[2 * n - 1];
+        backtrack(0, n, columns, diagonal1, diagonal2);
+        return count;
     }
-    List<Integer> list=new ArrayList<>();
-    public void helper(int n){
-        if(list.size()==n){
-            ans++;
-            return ;
+
+    private void backtrack(int row, int n, boolean[] columns, boolean[] diagonal1, boolean[] diagonal2) {
+        if (row == n) {
+            count++;
+            return;
         }
-        for(int i=0;i<n;i++){
-            if(check(i)) list.add(i);
-            else continue;
-            helper(n);
-            list.remove(list.size()-1);
+
+        for (int col = 0; col < n; col++) {
+            int d1 = row - col + n - 1;
+            int d2 = row + col;
+
+            if (!columns[col] && !diagonal1[d1] && !diagonal2[d2]) {
+                columns[col] = true;
+                diagonal1[d1] = true;
+                diagonal2[d2] = true;
+                backtrack(row + 1, n, columns, diagonal1, diagonal2);
+                columns[col] = false;
+                diagonal1[d1] = false;
+                diagonal2[d2] = false;
+            }
         }
     }
-    public boolean check(int i) {
-        int I=i;
-        for(int num: list)
-            if(num==i) return false;
-        int j=i;
-        for(int k=list.size()-1;k>=0;k--)
-            if((list.get(k)+1)==j) return false;
-            else j=j-1;
-        for(int k=list.size()-1;k>=0;k--)
-            if((list.get(k)-1)==i) return false;
-            else i=i+1;
-        return true;
-    }
-    
 }
-
-
-
-
-
-
 
 
 
