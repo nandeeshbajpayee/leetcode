@@ -13,7 +13,7 @@ class Solution {
         }
         for(int i=0;i<n;i++){
             String str=maker(i,n);
-            if(check(list,i)) list.add(str);
+            if(check(i)) list.add(str);
             else continue;
             helper(n);
             list.remove(list.size()-1);
@@ -27,7 +27,7 @@ class Solution {
         }
         return str;
     }
-      public boolean check(List<String> list, int J) {
+      public boolean check(int J) {
         int I = list.size();
         int i = I;
         int j = J;
