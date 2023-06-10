@@ -19,14 +19,21 @@ class Solution {
             list.remove(list.size()-1);
         }
     }
-    public String maker(int i,int n){
-        String str="";
-        for(int j=0;j<n;j++){
-            if(j==i) str+="Q";
-            else str+=".";
-        }
-        return str;
+    public String maker(int i, int n) {
+    StringBuilder sb = new StringBuilder();
+    for (int j = 0; j < n; j++) {
+        sb.append(j == i ? 'Q' : '.');
     }
+    return sb.toString();
+}
+    // public String maker(int i,int n){
+    //     String str="";
+    //     for(int j=0;j<n;j++){
+    //         if(j==i) str+="Q";
+    //         else str+=".";
+    //     }
+    //     return str;
+    // }
       public boolean check(int J) {
         int I = list.size();
         int i = I;
