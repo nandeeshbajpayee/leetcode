@@ -16,19 +16,15 @@
 class Solution {
     List<List<Integer>> res=new ArrayList();
     List<Integer> list=new ArrayList();
-    public List<List<Integer>> pathSum(TreeNode root, int targetSum) { 
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum){
         if(root==null) return res;
-        path(root,targetSum);
-        return res;
-    }
-    void path(TreeNode root,int targetSum){
-        if(root==null) return;
         list.add(root.val);
         if(targetSum==root.val && root.left==null && root.right==null) {
             res.add(new ArrayList(list));
         }
-        path(root.left,targetSum-root.val);
-        path(root.right,targetSum-root.val);
+        pathSum(root.left,targetSum-root.val);
+        pathSum(root.right,targetSum-root.val);
         list.remove(list.size()-1);
+        return res;
     }
 }
