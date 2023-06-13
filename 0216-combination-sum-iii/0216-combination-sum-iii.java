@@ -12,10 +12,8 @@ class Solution {
         if (n < 0 || list.size() > k) {
             return;
         }
-        
         for(int i=index;i<10;i++){
-            if(i<=n) list.add(i);
-            else return ;
+            list.add(i);
             combination(k,n-i,i+1);
             list.remove(list.size()-1);
         }
