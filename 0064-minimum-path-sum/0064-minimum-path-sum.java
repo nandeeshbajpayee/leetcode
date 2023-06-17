@@ -3,7 +3,6 @@ class Solution {
         int m=grid.length;
         if(m==0) return 0;
         int n=grid[0].length;
-        int[][] dp=new int[m][n];
         for(int i=1;i<n;i++){
             grid[0][i]+=grid[0][i-1];
         }
