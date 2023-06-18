@@ -1,19 +1,13 @@
 class Solution {
     public boolean canJump(int[] nums) {
-        if(nums.length==1) return true;
-        boolean flag=true;
-        for(int i=0;i<nums.length&&flag;i++){
-            if(nums[i]==0) flag=check(nums,i-1);
+        int lastGoodIndex = nums.length - 1;
+        
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (i + nums[i] >= lastGoodIndex) {
+                lastGoodIndex = i;
+            }
         }
-        return flag;  
-    }
-    boolean check(int[] nums,int i){
-        int k=1;
-        while(i>=0){
-            if(nums[i]>k || nums[i]+i==nums.length-1) return true;
-            k++;
-            i--;
-        }
-        return false;
+        
+        return lastGoodIndex == 0;
     }
 }
