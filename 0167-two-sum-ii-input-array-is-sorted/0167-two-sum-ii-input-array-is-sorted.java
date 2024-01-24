@@ -1,7 +1,6 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int[] arr=new int[2];
-        Arrays.fill(arr, -1);
+        int[] arr={-1,-1};
         int i=0;
         int j=nums.length-1;
         while(i<j){
