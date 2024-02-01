@@ -1,26 +1,28 @@
+import java.util.*;
+
 class Solution {
     public int[][] divideArray(int[] nums, int k) {
-        int n=nums.length;
-        int e=n/3;
-        Arrays.sort(nums);
-        int[][] res=new int[e][3];
-        int ptr=0;
-        int ptr2=0;
-        while(ptr2<e&& ptr<n){
-            int[] arr=new int[3];
-            if((nums[ptr+2]-nums[ptr])<=k){
-                arr[0]=nums[ptr];
-                arr[1]=nums[ptr+1];
-                arr[2]=nums[ptr+2];
-                res[ptr2]=arr;
-            ptr+=3;
-            ptr2++;
-            }
-            else{
-                   return new int[0][0];
+        int n = nums.length;
+
+        // Sort a copy of the array
+        int[] sortedNums = Arrays.copyOf(nums, n);
+        Arrays.sort(sortedNums);
+
+        List<int[]> result = new ArrayList<>();
+        int ptr = 0;
+
+        while (ptr < n) {
+            if (ptr + 2 < n && (sortedNums[ptr + 2] - sortedNums[ptr]) <= k) {
+                int[] arr = new int[]{sortedNums[ptr], sortedNums[ptr + 1], sortedNums[ptr + 2]};
+                result.add(arr);
+                ptr += 3;
+            } else {
+                // If it's not possible to create a valid partition, return an empty array
+                return new int[0][0];
             }
         }
-    return res;    
+
+        // Convert List to 2D array
+        return result.toArray(new int[result.size()][]);
     }
-    
 }
