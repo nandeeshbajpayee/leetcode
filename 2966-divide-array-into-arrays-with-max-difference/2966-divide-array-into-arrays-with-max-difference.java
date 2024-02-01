@@ -17,8 +17,7 @@ class Solution {
             ptr2++;
             }
             else{
-                int ans[][] = new int[0][0];
-                return ans;
+                   return new int[0][0];
             }
         }
     return res;    
