@@ -12,7 +12,7 @@ class Solution {
         int ptr = 0;
 
         while (ptr < n) {
-            if (ptr + 2 < n && (sortedNums[ptr + 2] - sortedNums[ptr]) <= k) {
+            if ((sortedNums[ptr + 2] - sortedNums[ptr]) <= k) {
                 int[] arr = new int[]{sortedNums[ptr], sortedNums[ptr + 1], sortedNums[ptr + 2]};
                 result.add(arr);
                 ptr += 3;
