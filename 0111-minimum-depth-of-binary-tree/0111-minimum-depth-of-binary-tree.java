@@ -19,7 +19,6 @@ class Solution {
         int right=minDepth(root.right);
         int left=minDepth(root.left);
         if(right==0 || left==0) return left+right+1;
-        if(left<right) return left+1;
-        return right+1;
+        return Math.min(left,right)+1;
     }
 }
