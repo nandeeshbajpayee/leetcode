@@ -9,12 +9,12 @@ class Solution {
             sb.append(c);
         }
         
-        return check(sb.toString());
+        return check(sb);
     }
-    private boolean check(String str){
-        int i=0,j=str.length()-1;
-        while(i<j){
-            if(str.charAt(i++)!=str.charAt(j--)) return false;
+     private boolean check(StringBuilder sb) {
+        int i = 0, j = sb.length() - 1;
+        while (i < j) {
+            if (sb.charAt(i++) != sb.charAt(j--)) return false;
         }
         return true;
     }
