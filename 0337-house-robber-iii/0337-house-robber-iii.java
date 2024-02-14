@@ -15,26 +15,18 @@
  */
 class Solution {
     public int rob(TreeNode root) {
-        housePair res = robbing(root);
-        int ans = Math.max(res.withrobbery, res.withoutrobbery);
-        return ans;
+    int[] ans=helper(root);
+     return Math.max(ans[0],ans[1]);   
     }
-
-    public static class housePair {
-        int withoutrobbery = 0;
-        int withrobbery = 0;
-    }
-
-    housePair robbing(TreeNode root) {
-        if (root == null)
-            return new housePair();
-        housePair left = robbing(root.left);
-        housePair right = robbing(root.right);
-
-        housePair ans = new housePair();
-
-        ans.withrobbery = left.withoutrobbery + root.val + right.withoutrobbery;
-        ans.withoutrobbery = Math.max(left.withoutrobbery, left.withrobbery) + Math.max(right.withoutrobbery, right.withrobbery);
-        return ans;
+    private int[] helper(TreeNode root){
+        if(root==null){
+            return new int[]{0,0};
+        }
+        int[] left=helper(root.left);
+        int[] right=helper(root.right);
+        
+        int rob=root.val + left[1] + right[1];
+        int notrob= Math.max(left[0],left[1])+Math.max(right[0],right[1]);
+        return new int[]{rob,notrob};
     }
 }
