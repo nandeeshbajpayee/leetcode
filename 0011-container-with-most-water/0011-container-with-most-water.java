@@ -1,15 +1,18 @@
 class Solution {
     public int maxArea(int[] height) {
-        int ptr1=0,ptr2=height.length-1;
-        int maxvol=0;
-        while(ptr1<ptr2){
-            int h1=height[ptr1];
-            int h2=height[ptr2];
-            int vol=(ptr2-ptr1)*Math.min(h1,h2);
-            maxvol=Math.max(vol,maxvol);
-            if(h1<h2) ptr1++;
-            else ptr2--;
+        int i=0;
+        int j=height.length-1;
+        int maxwater=Integer.MIN_VALUE;
+        while(i<j){
+            int h=Math.min(height[i],height[j]);
+            maxwater=Math.max(h*(j-i),maxwater);
+            if(height[i]<height[j]){
+                i++;
+            }
+            else{
+                j--;
+            }
         }
-        return maxvol;
+        return maxwater;
     }
 }
