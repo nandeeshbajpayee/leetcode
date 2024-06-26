@@ -25,16 +25,11 @@ class Solution {
         que.offer(root);
         while(!que.isEmpty()){
             List<Integer> list=new ArrayList<>();
-            Queue<List<Node>> que2=new LinkedList<>();
-            while(!que.isEmpty()){
+            int size=que.size();
+            while(size-->0){
                 Node node=que.poll();
                 list.add(node.val);
-                que2.offer(node.children);
-            }
-            while(!que2.isEmpty()){
-                List<Node> nodelist=que2.poll();
-                
-                for(Node node : nodelist) que.offer(node);
+                for(Node childnode : node.children ) que.offer(childnode);
             }
             res.add(list);
         }
